@@ -13,7 +13,7 @@ s32 __attribute__((noinline)) rsxContextCallback(gcmContextData *context,u32 cou
     "mr    31,2\n"	// Save rtoc
     "lwz  0,0(%0)\n"	// load callback funcion pointer
     "lwz  2,4(%0)\n"	// load callback's rtoc
-    "mtctr  0\n"	
+    "mtctr  0\n"
     "bctrl\n"		// Branch to callback function
     "mr    2,31\n"	// restore rtoc
     "addi  1,1,128\n"	// restore stack pointer
@@ -25,8 +25,8 @@ s32 __attribute__((noinline)) rsxContextCallback(gcmContextData *context,u32 cou
 #endif
 
 void commandBufferPut(gcmContextData* context, uint32_t value) {
-	uint32_t* buffer = (uint32_t *)(uint64_t) context->current;
+	uint32_t* buffer = context->current;
 	 *buffer++ = value;
-	context->current = (uint32_t)(uint64_t) buffer;
+	context->current = buffer;
 }
 
