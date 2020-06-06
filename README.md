@@ -82,7 +82,7 @@ spheres3D uses the advanced features of Tiny3D 2.0
 2020 Update
 --------------
 
-Removed errors and warnings. Tested with PS3 Toolchain gcc 7.2
+Removed errors and warnings. Tested with PS3 Toolchain gcc 7.2.
 All samples are compilable and working.
 
 CrystalCT
