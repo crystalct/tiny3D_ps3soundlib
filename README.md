@@ -1,4 +1,4 @@
-Tiny3D 2.0 + libfont
+Tiny3D 2.0 + libfont (2020 update)
 ==========
 
 Tiny3D is one library to work with 2D/3D graphics.
