@@ -1,4 +1,4 @@
-Tiny3D 2.0 + libfont
+Tiny3D 2.0 + libfont (2020 update)
 ==========
 
 Tiny3D is one library to work with 2D/3D graphics.
@@ -79,3 +79,10 @@ ps3loadx, yuv, tiny3d_lists
 
 spheres3D uses the advanced features of Tiny3D 2.0
 
+2020 Update
+--------------
+
+Removed errors and warnings. Tested with PS3 Toolchain gcc 7.2.</br>
+All samples are compilable and working.
+
+CrystalCT
