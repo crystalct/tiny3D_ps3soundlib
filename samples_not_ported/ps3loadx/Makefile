@@ -10,8 +10,8 @@ endif
 #---------------------------------------------------------------------------------
 #  TITLE, APPID, CONTENTID, ICON0 SFOXML before ppu_rules.
 #---------------------------------------------------------------------------------
-TITLE		:=	Sprites 2D - Tiny3D
-APPID		:=	SPRITES01
+TITLE		:=	PS3LoadX - Tiny3D
+APPID		:=	PSL145310
 CONTENTID	:=	UP0001-$(APPID)_00-0000000000000000
 
 include $(PSL1GHT)/ppu_rules
@@ -36,7 +36,7 @@ INCLUDES	:=	include
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS		:=	-ltiny3d -lsimdmath -lgcm_sys -lio -lsysutil -lrt -llv2 -lpngdec -lsysmodule -lm -lrsx
+LIBS		:=	-lfont -lfreetype -ltiny3d -lrsx -lz -lsimdmath -lgcm_sys -lio -lsysutil -lrt -llv2 -lsysmodule -lm
 
 
 #---------------------------------------------------------------------------------
@@ -107,74 +107,60 @@ export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
 export INCLUDE	:=	$(foreach dir,$(INCLUDES), -I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					$(LIBPSL1GHT_INC) \
-					-I$(CURDIR)/$(BUILD) -I$(PORTLIBS)/include
+					-I$(CURDIR)/$(BUILD) -I$(PORTLIBS)/include -I$(PORTLIBS)/include/freetype2
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
 #---------------------------------------------------------------------------------
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
-					$(LIBPSL1GHT_LIB) -L$(PORTLIBS)/lib
+					$(LIBPSL1GHT_LIB)  -L$(PORTLIBS)/lib
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 .PHONY: $(BUILD) clean
 
-
-#---------------------------------------------------------------------------------
 $(BUILD):
+	@echo $(TARGET)
 	@[ -d $@ ] || mkdir -p $@
-	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
-#---------------------------------------------------------------------------------
 clean:
-	@echo clean ...
-	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).self EBOOT.BIN
+	@echo Clean...
+	@rm -rf $(BUILD) $(OUTPUT).elf $(OUTPUT).self $(OUTPUT).a $(OUTPUT).pkg
 
-#---------------------------------------------------------------------------------
-run:
-	ps3load $(OUTPUT).self
+pkg: $(BUILD)
+	@echo Creating PKG...
+	@mkdir -p $(BUILD)/pkg
+	@mkdir -p $(BUILD)/pkg/USRDIR
+	@cp $(ICON0) $(BUILD)/pkg/
+	@cp $(BUILD)/../$(TARGET).self $(BUILD)/pkg/RELOAD.SELF
+	#@$(FSELF) -n $(BUILD)/$(TARGET).elf $(BUILD)/pkg/USRDIR/EBOOT.BIN
+	@$(SELF_NPDRM) $(BUILD)/$(TARGET).elf $(BUILD)/pkg/USRDIR/EBOOT.BIN $(CONTENTID)
+	@$(SFO) -f $(SFOXML) $(BUILD)/pkg/PARAM.SFO
+	@$(PKG) --contentid $(CONTENTID) $(BUILD)/pkg/ $(OUTPUT).pkg
+	@cp $(OUTPUT).pkg $(OUTPUT).geohot.pkg
+	@$(PKG_GEO) $(OUTPUT).geohot.pkg
 
-#---------------------------------------------------------------------------------
-pkg:	$(BUILD) $(OUTPUT).pkg
+pkgh341: $(BUILD)
+	@echo Creating PKG...
+	@mkdir -p $(BUILD)/pkg
+	@mkdir -p $(BUILD)/pkg/USRDIR
+	@cp $(ICON0) $(BUILD)/pkg/
+	@cp $(BUILD)/../$(TARGET).self $(BUILD)/pkg/RELOAD.SELF
+	@cp $(BUILD)/../payload/EBOOT.BIN $ $(BUILD)/pkg/USRDIR/EBOOT.BIN
+	@$(SFO) -f $(SFOXML) $(BUILD)/pkg/PARAM.SFO
+	@$(PKG) --contentid $(CONTENTID) $(BUILD)/pkg/ $(OUTPUT).cfw_hermes_3.41.pkg
 
-#---------------------------------------------------------------------------------
-
-npdrm: $(BUILD)
-	@$(SELF_NPDRM) $(SCETOOL_FLAGS) --np-content-id=$(CONTENTID) --encrypt $(BUILDDIR)/$(basename $(notdir $(OUTPUT))).elf $(BUILDDIR)/../EBOOT.BIN
-
-#---------------------------------------------------------------------------------
+run: $(BUILD)
+	@$(PS3LOADAPP) $(OUTPUT).self
 
 else
 
-DEPENDS	:=	$(OFILES:.o=.d)
+DEPENDS	:= $(OFILES:.o=.d)
 
-#---------------------------------------------------------------------------------
-# main targets
-#---------------------------------------------------------------------------------
 $(OUTPUT).self: $(OUTPUT).elf
-$(OUTPUT).elf:	$(OFILES)
-
-#---------------------------------------------------------------------------------
-# This rule links in binary data with the .bin extension
-#---------------------------------------------------------------------------------
-%.bin.o	:	%.bin
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	@$(bin2o)
-
-#---------------------------------------------------------------------------------
-%.vpo.o	:	%.vpo
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	@$(bin2o)
-
-#---------------------------------------------------------------------------------
-%.fpo.o	:	%.fpo
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	@$(bin2o)
+$(OUTPUT).elf: $(OFILES)
+$(OFILES): $(BINFILES) $(VCGFILES)
 
 -include $(DEPENDS)
 
-#---------------------------------------------------------------------------------
 endif
-#---------------------------------------------------------------------------------

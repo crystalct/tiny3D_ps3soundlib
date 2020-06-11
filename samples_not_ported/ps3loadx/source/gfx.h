@@ -8,9 +8,9 @@
 #include "font.h"
 
 
-#include <jpgdec/loadjpg.h>
-#include <pngdec/loadpng.h>
-#include "psl1ght_jpg.bin.h" // jpg in memory
+#include <jpgdec/jpgdec.h>
+#include <pngdec/pngdec.h>
+#include "psl1ght_jpg_bin.h" // jpg in memory
 
 extern JpgDatas jpg1;
 extern u32 jpg1_offset;
