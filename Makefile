@@ -3,17 +3,15 @@
 
 all:
 	
-	@$(MAKE) install -C lib --no-print-directory
-	@$(MAKE) install -C libfont --no-print-directory
-	@$(MAKE) -C samples --no-print-directory
+	$(MAKE) install -C lib
+	$(MAKE) install -C libfont
 
 pkg:
-	@$(MAKE) install -C lib --no-print-directory
-	@$(MAKE) install -C libfont --no-print-directory
-	@$(MAKE) pkg -C samples --no-print-directory
+	$(MAKE) install -C lib
+	$(MAKE) install -C libfont
 
 clean:
-	@$(MAKE) clean -C lib --no-print-directory
-	@$(MAKE) clean -C libfont --no-print-directory
-	@$(MAKE) clean -C samples --no-print-directory
+	$(MAKE) clean -C lib
+	$(MAKE) clean -C libfont
+
 

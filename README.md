@@ -1,12 +1,13 @@
-Tiny3D 2.0 + libfont (2020 update)
+Tiny3D 2.0
 ==========
 
-Tiny3D is one library to work with 2D/3D graphics.
+Tiny3D is one library to work with 2D/3D graphics (obsolete).
 
-NOTE: this repository is updated to the last PSL1GHT libraries and tools
+NOTE: this repository is updated to the last PSL1GHT libraries and tools on February 1, 2011.
+Thanks to "marioga" to send to me the new PS3 compilers under MinGW environment
 
-It uses PSL1GHT and install the libraries in $PORTLIBS/lib, C Header files
-in $PORTLIBS/include. it will also install nv40v1.h that comes from PSL1GHT V1
+It uses PSL1GHT and install the libraries in PSL1GHT/target/lib, C Header files
+in PSL1GHT/include
 
 see the 'docs' folder to know more (i need to update the info to the 2.0 version)
 
@@ -17,8 +18,6 @@ Credits
     ElSemi         - Vertex Program Compiler and other useful sample code
     HACKERCHANNEL  - PSL1GHT
     Oopo           - ps3libraries
-    xerpi          - porting the lib to v2
-    deroad/Wargio  - check code
 
 License
 -------
@@ -79,10 +78,7 @@ ps3loadx, yuv, tiny3d_lists
 
 spheres3D uses the advanced features of Tiny3D 2.0
 
-2020 Update
---------------
+NOTE: fonts_from_ttf requires Oopo ps3libraries libz and freetype. ps3loadx requires libz and libzip.
 
-Removed errors and warnings. Tested with PS3 Toolchain gcc 7.2.</br>
-All samples are compilable and working.
+You can download from here: http://mods.elotrolado.net/~hermes/ps3/ps3dev/ppu_oopo-ps3libraries.rar
 
-CrystalCT

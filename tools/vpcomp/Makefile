@@ -10,7 +10,7 @@ LDFLAGS += /Library/Frameworks/Cg.framework/Cg
 endif
 
 ifeq ($(UNAME),Linux)
-LDFLAGS += -lCg -lpthread
+LDFLAGS += -lCg -lpthread -static
 endif
 LDFLAGS += $(NVIDIA)/lib/cg.lib -lpthread
 
