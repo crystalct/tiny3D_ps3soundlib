@@ -18,6 +18,7 @@
 
 
 #include "spu_soundlib.h"
+#include <unistd.h>
 
 #define PRIORITY 501 // High Priority
 
