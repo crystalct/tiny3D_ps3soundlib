@@ -1,4 +1,4 @@
-NVIDIA= /cygdrive/c/Cg
+NVIDIA=.
 
 CFLAGS += -Wall -Os -g -pipe -I../../include/rsx -I$(NVIDIA)/include
 LDFLAGS += -lstdc++
