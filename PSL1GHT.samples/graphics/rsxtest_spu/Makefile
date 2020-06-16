@@ -31,7 +31,7 @@ CONTENTID	:=	UP0001-$(APPID)_00-0000000000000000
 #---------------------------------------------------------------------------------
 
 CFLAGS		=	-Os -Wall -mcpu=cell $(MACHDEP) $(INCLUDE)
-CXXFLAGS	=	$(CFLAGS)
+CXXFLAGS	=	$(CFLAGS) -Wno-narrowing
 
 LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 

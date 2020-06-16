@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <malloc.h>
 #include <string.h>
 #include <ppu-types.h>
 #include <spurs/spurs.h>
@@ -27,7 +28,7 @@ int main(void)
 	printf("sysSpuInitialize return %d\n",ret);
 	
 	ret= sysThreadGetId(&ppu_thread_id);
-	printf("sysThreadGetId return %d ppu_thread_id %x\n",ret,ppu_thread_id);
+	printf("sysThreadGetId return %d ppu_thread_id %x\n",ret,(unsigned int)ppu_thread_id);
 
 	ret = sysThreadGetPriority(ppu_thread_id, &ppu_prio);
 	printf("sysThreadGetPriority return %d ppu_prio %d\n",ret,ppu_prio);

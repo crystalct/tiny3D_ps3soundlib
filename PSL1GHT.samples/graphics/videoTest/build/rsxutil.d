@@ -1,5 +1,5 @@
 rsxutil.o: \
- /home/crystal/PSL1GHT/samples/graphics/videoTest/source/rsxutil.c \
+ /home/crystal/tiny3D_ps3soundlib/PSL1GHT.samples/graphics/videoTest/source/rsxutil.c \
  /usr/local/ps3dev/psl1ght/ppu/include/ppu-lv2.h \
  /usr/local/ps3dev/psl1ght/ppu/include/ppu-types.h \
  /usr/local/ps3dev/psl1ght/ppu/include/sysutil/video.h \
@@ -13,7 +13,7 @@ rsxutil.o: \
  /usr/local/ps3dev/portlibs/ppu/include/cairo/cairo-version.h \
  /usr/local/ps3dev/portlibs/ppu/include/cairo/cairo-features.h \
  /usr/local/ps3dev/portlibs/ppu/include/cairo/cairo-deprecated.h \
- /home/crystal/PSL1GHT/samples/graphics/videoTest/include/rsxutil.h
+ /home/crystal/tiny3D_ps3soundlib/PSL1GHT.samples/graphics/videoTest/include/rsxutil.h
 
 /usr/local/ps3dev/psl1ght/ppu/include/ppu-lv2.h:
 
@@ -41,4 +41,4 @@ rsxutil.o: \
 
 /usr/local/ps3dev/portlibs/ppu/include/cairo/cairo-deprecated.h:
 
-/home/crystal/PSL1GHT/samples/graphics/videoTest/include/rsxutil.h:
+/home/crystal/tiny3D_ps3soundlib/PSL1GHT.samples/graphics/videoTest/include/rsxutil.h:
