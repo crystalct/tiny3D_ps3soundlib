@@ -106,7 +106,7 @@ install: $(OUTPUT).elf
 
 clean:
 	@echo Clean...
-	@rm -rf $(BUILD) $(OUTPUT).elf $(OUTPUT).a lib
+	@rm -rf $(BUILD) $(OUTPUT).elf $(OUTPUT).a $(OUTPUT).bin.a lib
 
 else
 
