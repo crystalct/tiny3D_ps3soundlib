@@ -3,18 +3,17 @@
 
 all:
 	
-	$(MAKE) install -C ps3soundlib/libs
-	$(MAKE) install -C lib
-	$(MAKE) install -C libfont
+	@$(MAKE) install -C lib --no-print-directory
+	@$(MAKE) install -C libfont --no-print-directory
+	@$(MAKE) -C samples --no-print-directory
 
 pkg:
-	$(MAKE) install -C ps3soundlib/libs
-	$(MAKE) install -C lib
-	$(MAKE) install -C libfont
+	@$(MAKE) install -C lib --no-print-directory
+	@$(MAKE) install -C libfont --no-print-directory
+	@$(MAKE) pkg -C samples --no-print-directory
 
 clean:
-	$(MAKE) clean -C ps3soundlib/libs
-	$(MAKE) clean -C lib
-	$(MAKE) clean -C libfont
-
+	@$(MAKE) clean -C lib --no-print-directory
+	@$(MAKE) clean -C libfont --no-print-directory
+	@$(MAKE) clean -C samples --no-print-directory
 
